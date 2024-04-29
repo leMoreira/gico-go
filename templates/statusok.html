@@ -1,0 +1,27 @@
+{{define "statusok.html"}}
+
+{{template "_head.html"}}
+{{template "_menu.html"}}
+
+<div class="container mt-5">
+  <div class="row d-flex justify-content-center align-items-center py-5">
+    <div class="col-md-6 bg-light d-flex justify-content-center align-items-center py-5">
+
+      <div class="d-flex align-items-center w-50">
+        <strong role="status" class="text-success">{{.message}}</strong>
+        <div class="spinner-border ms-auto text-info" style="width: 7rem; height: 7rem;" aria-hidden="true"></div>
+      </div>
+
+      <script>
+        setTimeout(() => {
+          window.location.href = "/equipes"
+        }, 3000);
+      </script>
+
+
+    </div>
+  </div>
+</div>
+
+
+{{end}}

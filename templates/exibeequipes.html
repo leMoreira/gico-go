@@ -1,0 +1,92 @@
+{{define "exibeequipes.html"}}
+
+{{template "_head.html"}}
+{{template "_menu.html"}}
+
+<div class="container mt-5">
+  <h2 class="text-right border-bottom d-flex justify-content-between py-2">
+    Equipes
+    <a href="/" class="btn btn-secondary btn-sm d-flex align-items-center"> Voltar</a>
+  </h2>
+
+  <div class="row d-flex justify-content-center">
+    <div class="col-md-9  d-flex justify-content-around">
+
+
+
+      <div class="container mt-3">
+        <div class="row">
+          <div class="col-md-5">
+            <h3 class="text-center">Lista</h3>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Nome</th>
+                  <th scope="col">Cor</th>
+                  <th scope="col">Ação</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                {{range .equipes}}
+                <tr>
+                  <td scope="row">{{.Id}}</td>
+                  <td>{{.Nome}}</td>
+                  <td>
+                    <input type="color" value="{{.Cor}}" disabled readonly>
+
+                  </td>
+                  <td>
+                    <a href="/edit?id={{.Id}}" class="btn btn-warning btn-sm">
+                      <i class="bi bi-pencil-square"></i>
+                    </a>
+                    <button onclick="onDelete('{{.Id}}')" class="btn btn-danger btn-sm">
+                      <i class="bi bi-trash"></i>
+                    </button>
+                  </td>
+                </tr>
+                {{end}}
+              </tbody>
+            </table>
+          </div>
+
+          <script>
+            function onDelete(id) {
+              resposta = confirm("Tem certeza que deseja deletar essa equipe?")
+              if (resposta) {
+                window.location = "/delete?id=" + id
+              }
+            }
+          </script>
+
+          <div class="col-md-5">
+            <h3 class="text-center">Cadastrar</h3>
+
+            <form action="insert" method="POST">
+              <div class="mb-3">
+                <label for="nome" class="form-label">Nome</label>
+                <input type="text" name="nome" id="nome" placeholder="" class="form-control">
+              </div>
+              <div class="mb-3">
+                <label for="cor" class="form-label">Cor</label>
+                <input type="color" name="cor" id="cor" class="form-control">
+              </div>
+              <div class="mb-3 d-flex justify-content-end">
+                <button type="submit" class="btn btn-primary btn-sm">Salvar</button>
+              </div>
+            </form>
+
+          </div>
+
+
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</div>
+</div>
+
+{{end}}
