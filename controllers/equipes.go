@@ -11,7 +11,7 @@ import (
 	"github.com/leandro/gico-go/models"
 )
 
-func Saudacao(c *gin.Context) {
+func Index(c *gin.Context) {
 
 	c.HTML(http.StatusOK, "index.html", nil)
 

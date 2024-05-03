@@ -1,11 +1,11 @@
-{{define "exibeequipes.html"}}
+{{define "exibeprovas.html"}}
 
 {{template "_head.html"}}
 {{template "_menu.html"}}
 
 <div class="container mt-5">
   <h2 class="text-right border-bottom d-flex justify-content-between py-2">
-    Equipes
+    Provas
     <a href="/" class="btn btn-secondary btn-sm d-flex align-items-center"> Voltar</a>
   </h2>
 
@@ -42,7 +42,7 @@
 
                   </td>
                   <td>
-                    <a href="/equipes/edit?id={{.Id}}" class="btn btn-warning btn-sm">
+                    <a href="/provas/edit?id={{.Id}}" class="btn btn-warning btn-sm">
                       <i class="bi bi-pencil-square"></i>
                     </a>
                     <button onclick="onDelete('{{.Id}}')" class="btn btn-danger btn-sm">
@@ -76,7 +76,7 @@
             function onDelete(id) {
               resposta = confirm("Tem certeza que deseja deletar essa equipe?")
               if (resposta) {
-                window.location = "/equipes/delete?id=" + id
+                window.location = "/provas/delete?id=" + id
               }
             }
           </script>
@@ -84,14 +84,27 @@
           <div class="col-md-5">
             <h3 class="text-center">Cadastrar</h3>
 
-            <form action="equipes/insert" method="POST">
+            <form action="provas/insert" method="POST">
               <div class="mb-3">
-                <label for="nome" class="form-label">Nome</label>
-                <input type="text" name="nome" id="nome" placeholder="" class="form-control">
+                <label for="descricao" class="form-label">Descrição</label>
+                <input type="text" name="descricao" id="descricao" placeholder="" class="form-control">
+              </div>
+              <small class="w-100 bg-info py-2 px-5 mb-4 rounded-top" style="">Pontuações</small>
+              <div class="mb-3 mt-3">
+                <label for="pontosprimeiro" class="form-label">Primeiro Colocado</label>
+                <input type="number" name="pontosprimeiro" id="pontosprimeiro" class="form-control">
               </div>
               <div class="mb-3">
-                <label for="cor" class="form-label">Cor</label>
-                <input type="color" name="cor" id="cor" class="form-control">
+                <label for="pontossegundo" class="form-label">Segundo Colocado</label>
+                <input type="number" name="pontossegundo" id="pontossegundo" class="form-control">
+              </div>
+              <div class="mb-3">
+                <label for="pontosterceiro" class="form-label">Terceiro Colocado</label>
+                <input type="number" name="pontosterceiro" id="pontosterceiro" class="form-control">
+              </div>
+              <div class="mb-3">
+                <label for="pontosquarto" class="form-label">Quarto Colocado</label>
+                <input type="number" name="pontosquarto" id="pontosquarto" class="form-control">
               </div>
               <div class="mb-3 d-flex justify-content-end">
                 <button type="submit" class="btn btn-primary btn-sm">Salvar</button>
