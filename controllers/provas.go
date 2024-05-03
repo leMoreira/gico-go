@@ -11,7 +11,12 @@ import (
 
 func ExibeProvas(c *gin.Context) {
 
-	c.HTML(http.StatusOK, "exibeprovas.html", nil)
+	var provas []models.Prova
+	basedados.DB.Find(&provas)
+
+	c.HTML(http.StatusOK, "exibeprovas.html", gin.H{
+		"provas": provas,
+	})
 
 }
 
@@ -25,7 +30,7 @@ func InserirDadosProva(c *gin.Context) {
 	pontosterceiro := c.PostForm("pontosterceiro")
 	pontosquarto := c.PostForm("pontosquarto")
 
-	prova.Descrição = descricao
+	prova.Descricao = descricao
 	prova.Pontosprimeiro, _ = strconv.Atoi(pontosprimeiro)
 	prova.Pontossegundo, _ = strconv.Atoi(pontossegundo)
 	prova.Pontosterceiro, _ = strconv.Atoi(pontosterceiro)
@@ -35,6 +40,7 @@ func InserirDadosProva(c *gin.Context) {
 
 	c.HTML(http.StatusOK, "statusok.html", gin.H{
 		"message": "Prova Cadastrada",
+		"link":    "provas",
 	})
 
 }

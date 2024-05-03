@@ -10,39 +10,42 @@
   </h2>
 
   <div class="row d-flex justify-content-center">
-    <div class="col-md-9  d-flex justify-content-around">
+    <div class="col-md-12  d-flex justify-content-around">
 
 
 
       <div class="container mt-3">
         <div class="row">
-          <div class="col-md-7">
+          <div class="col-md-9">
             <h3 class="text-center">Lista</h3>
 
 
 
 
-            <table id="example" class="table table-striped" style="width:100%">
+            <table id="example" class="table table-hover" style="width:100%">
               <thead>
                 <tr>
                   <th scope="col">#</th>
-                  <th scope="col">Nome</th>
-                  <th scope="col">Cor</th>
+                  <th scope="col">Descrição</th>
+                  <th scope="col">1° Pontos</th>
+                  <th scope="col">2° Pontos</th>
+                  <th scope="col">3° Pontos</th>
+                  <th scope="col">4° Pontos</th>
                   <th scope="col">Ação</th>
                 </tr>
               </thead>
 
               <tbody>
-                {{range .equipes}}
+                {{range .provas}}
                 <tr>
                   <td scope="row">{{.Id}}</td>
-                  <td>{{.Nome}}</td>
-                  <td>
-                    <input type="color" value="{{.Cor}}" disabled readonly>
-
-                  </td>
-                  <td>
-                    <a href="/provas/edit?id={{.Id}}" class="btn btn-warning btn-sm">
+                  <td style="width:30%">{{.Descricao}}</td>
+                  <td class="text-center">{{.Pontosprimeiro}}</td>
+                  <td class="text-center">{{.Pontossegundo}}</td>
+                  <td class="text-center"> {{.Pontosterceiro}}</td>
+                  <td class="text-center"> {{.Pontosquarto}}</td>
+                  <td class="text-center">
+                    <a href="/provas/edit?id={{.Id}}" class="btn btn-warning btn-sm me-1">
                       <i class="bi bi-pencil-square"></i>
                     </a>
                     <button onclick="onDelete('{{.Id}}')" class="btn btn-danger btn-sm">
@@ -55,8 +58,11 @@
               <tfoot>
                 <tr>
                   <th scope="col">#</th>
-                  <th scope="col">Nome</th>
-                  <th scope="col">Cor</th>
+                  <th scope="col">Descrição</th>
+                  <th scope="col">1° Pontos</th>
+                  <th scope="col">2° Pontos</th>
+                  <th scope="col">3° Pontos</th>
+                  <th scope="col">4° Pontos</th>
                   <th scope="col">Ação</th>
                 </tr>
               </tfoot>
@@ -67,7 +73,7 @@
 
           <!-- Ativando tabela-->
           <script>
-            $("minhaTabela").DataTable()
+            $("#example").DataTable()
           </script>
           <script>
 
@@ -81,7 +87,7 @@
             }
           </script>
 
-          <div class="col-md-5">
+          <div class="col-md-3">
             <h3 class="text-center">Cadastrar</h3>
 
             <form action="provas/insert" method="POST">

@@ -39,6 +39,7 @@ func InserirDadosEquipes(c *gin.Context) {
 	basedados.DB.Create(&equipe)
 	c.HTML(http.StatusOK, "statusok.html", gin.H{
 		"message": "Equipe Cadastrada",
+		"link":    "equipes",
 	})
 }
 
@@ -57,6 +58,7 @@ func DeletaEquipe(c *gin.Context) {
 
 	c.HTML(http.StatusOK, "statusok.html", gin.H{
 		"message": "Equipe Excluída",
+		"link":    "equipes",
 	})
 
 }
@@ -104,6 +106,7 @@ func AtualizarEquipe(c *gin.Context) {
 
 	c.HTML(http.StatusOK, "statusok.html", gin.H{
 		"message": "Equipe Atualizada",
+		"link":    "equipes",
 	})
 
 }
