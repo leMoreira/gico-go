@@ -44,3 +44,17 @@ func InserirDadosProva(c *gin.Context) {
 	})
 
 }
+
+func DeletaProva(c *gin.Context) {
+	var prova []models.Prova
+
+	id := c.Query("id")
+
+	basedados.DB.Delete(&prova, id)
+
+	c.HTML(http.StatusOK, "statusok.html", gin.H{
+		"message": "Prova Excluída",
+		"link":    "provas",
+	})
+
+}

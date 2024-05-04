@@ -23,6 +23,7 @@ func HandleRequests() {
 	// Provas
 	r.GET("/provas", controllers.ExibeProvas)
 	r.POST("provas/insert", controllers.InserirDadosProva)
+	r.GET("/provas/delete", controllers.DeletaProva)
 
 	r.Run()
 }
