@@ -58,3 +58,16 @@ func DeletaProva(c *gin.Context) {
 	})
 
 }
+
+func BuscarProvaParaEditar(c *gin.Context) {
+	var prova []models.Prova
+
+	id := c.Query("id")
+
+	basedados.DB.First(&prova, id)
+
+	c.HTML(http.StatusOK, "editaprova.html", gin.H{
+		"prova": prova,
+	})
+
+}

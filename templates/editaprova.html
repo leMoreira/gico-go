@@ -1,0 +1,82 @@
+{{define "editaprova.html"}}
+
+{{template "_head.html"}}
+{{template "_menu.html"}}
+
+<div class="container mt-5">
+  <h2 class="text-right border-bottom d-flex justify-content-between py-2">
+    Editar Prova
+    <a href="/" class="btn btn-secondary btn-sm d-flex align-items-center"> Voltar</a>
+  </h2>
+
+  <div class="row d-flex justify-content-center">
+    <div class="col-md-9  d-flex justify-content-around">
+
+
+
+      <div class="container mt-3">
+        <div class="row">
+
+          <div class="col-md-5">
+            <!-- <h3 class="text-center">Editar</h3> -->
+
+
+
+            <form action="provas/update" method="POST">
+              {{range .prova}}
+              <input type="hidden" name="id" value="{{.Id}}">
+              <div class="mb-3">
+                <label for="descricao" class="form-label">Descrição</label>
+                <input type="text" name="descricao" value="{{.Descricao}}" id="descricao" placeholder=""
+                  class="form-control">
+              </div>
+
+              <div class="mb-3">
+                <label for="pontosprimeiro" class="form-label">Pontuação (1° lugar)</label>
+                <input type="text" name="pontosprimeiro" value="{{.Pontosprimeiro}}" id="pontosprimeiro" placeholder=""
+                  class="form-control">
+              </div>
+              <div class="mb-3">
+                <label for="pontossegundo" class="form-label">Pontuação (2° lugar)</label>
+                <input type="text" name="pontossegundo" value="{{.Pontossegundo}}" id="pontossegundo" placeholder=""
+                  class="form-control">
+              </div>
+              <div class="mb-3">
+                <label for="pontosterceiro" class="form-label">Pontuação (3° lugar)</label>
+                <input type="text" name="pontosterceiro" value="{{.Pontosterceiro}}" id="pontosterceiro" placeholder=""
+                  class="form-control">
+              </div>
+
+              <div class="mb-3">
+                <label for="pontosterceiro" class="form-label">Pontuação (3° lugar)</label>
+                <input type="text" name="pontosterceiro" value="{{.Pontosterceiro}}" id="pontosterceiro" placeholder=""
+                  class="form-control">
+              </div>
+
+              <div class="mb-3">
+                <label for="pontosquarto" class="form-label">Pontuação (4° lugar)</label>
+                <input type="text" name="pontosquarto" value="{{.Pontosquarto}}" id="pontosquarto" placeholder=""
+                  class="form-control">
+              </div>
+
+
+              <div class="mb-3 d-flex justify-content-end">
+                <button type="submit" class="btn btn-primary btn-sm">Editar</button>
+              </div>
+
+              {{end}}
+            </form>
+
+          </div>
+
+
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</div>
+</div>
+
+{{end}}
