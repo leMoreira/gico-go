@@ -25,7 +25,7 @@ func HandleRequests() {
 	r.POST("provas/insert", controllers.InserirDadosProva)
 	r.GET("/provas/edit", controllers.BuscarProvaParaEditar)
 	r.GET("/provas/delete", controllers.DeletaProva)
-	R.POST("/provas/update")
+	r.POST("/provas/update", controllers.AtualizarProva)
 
 	r.Run()
 }

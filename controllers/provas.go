@@ -1,6 +1,8 @@
 package controllers
 
 import (
+	"fmt"
+	"log"
 	"net/http"
 	"strconv"
 
@@ -68,6 +70,59 @@ func BuscarProvaParaEditar(c *gin.Context) {
 
 	c.HTML(http.StatusOK, "editaprova.html", gin.H{
 		"prova": prova,
+	})
+
+}
+
+func AtualizarProva(c *gin.Context) {
+	var Prova models.Prova
+	descricao := c.PostForm("descricao")
+	pontosprimeiro := c.PostForm("pontosprimeiro")
+	pontossegundo := c.PostForm("pontossegundo")
+	pontosterceiro := c.PostForm("pontosterceiro")
+	pontosquarto := c.PostForm("pontosquarto")
+	id := c.PostForm("id")
+
+	idConvert, err := strconv.Atoi(id)
+	if err != nil {
+		fmt.Println("Não foi convertido")
+		log.Panic(err.Error())
+	}
+
+	pontosPrimeiroConvert, err := strconv.Atoi(pontosprimeiro)
+	if err != nil {
+		fmt.Println("Não foi convertido")
+		log.Panic(err.Error())
+	}
+	pontosSegundoConvert, err := strconv.Atoi(pontossegundo)
+	if err != nil {
+		fmt.Println("Não foi convertido")
+		log.Panic(err.Error())
+	}
+	pontosTerceiroConvert, err := strconv.Atoi(pontosterceiro)
+	if err != nil {
+		fmt.Println("Não foi convertido")
+		log.Panic(err.Error())
+	}
+	pontosQuartoConvert, err := strconv.Atoi(pontosquarto)
+	if err != nil {
+		fmt.Println("Não foi convertido")
+		log.Panic(err.Error())
+	}
+
+	basedados.DB.Model(&Prova).Where("id = ?", idConvert).Updates(models.Prova{
+		Descricao:      descricao,
+		Pontosprimeiro: pontosPrimeiroConvert,
+		Pontossegundo:  pontosSegundoConvert,
+		Pontosterceiro: pontosTerceiroConvert,
+		Pontosquarto:   pontosQuartoConvert,
+	})
+
+	fmt.Println(&Prova)
+
+	c.HTML(http.StatusOK, "statusok.html", gin.H{
+		"message": "Prova Atualizada",
+		"link":    "provas",
 	})
 
 }
