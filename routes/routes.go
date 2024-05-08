@@ -11,6 +11,9 @@ func HandleRequests() {
 	r.LoadHTMLGlob("templates/*")
 	r.Static("/assets", "./assets")
 
+	//Login
+	r.GET("/login", controllers.Login)
+
 	//Equipes
 	r.GET("/", controllers.Index)
 	r.GET("/equipes", controllers.ExibeEquipes)
