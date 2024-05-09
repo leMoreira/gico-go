@@ -13,6 +13,7 @@ func HandleRequests() {
 
 	//Login
 	r.GET("/login", controllers.Login)
+	r.GET("/register", controllers.Register)
 
 	//Equipes
 	r.GET("/", controllers.Index)
