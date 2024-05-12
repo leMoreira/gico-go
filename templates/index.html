@@ -2,7 +2,16 @@
 
 {{template "_head.html"}}
 {{template "_menu.html"}}
-
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-md-12 d-flex justify-content-end">
+      <a href="/deleteCookie" class="btn btn-danger">
+        Sair
+        <i class="bi bi-box-arrow-right"></i>
+      </a>
+    </div>
+  </div>
+</div>
 <div class="container mt-5">
   <div class="row d-flex justify-content-center">
     <div class="col-md-9  d-flex justify-content-around">
@@ -10,6 +19,7 @@
       <div class="card" style="width: 18rem;">
         <div class="card-body">
           <h5 class="card-title bg-dark text-white d-flex justify-content-center py-2">Equipes</h5>
+
           <p class="card-text bg-light d-flex justify-content-center">
             <i class="bi bi-people" style="font-size: 4rem;"></i>
           </p>
@@ -41,5 +51,6 @@
   </div>
 </div>
 </div>
+
 {{template "_footer.html"}}
 {{end}}

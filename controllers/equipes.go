@@ -13,7 +13,13 @@ import (
 
 func Index(c *gin.Context) {
 
-	c.HTML(http.StatusOK, "index.html", nil)
+	usuario, _ := c.Get("usuario")
+
+	fmt.Println(usuario)
+
+	c.HTML(http.StatusOK, "index.html", gin.H{
+		"usuario": usuario,
+	})
 
 }
 
@@ -80,7 +86,6 @@ func BuscarEquipeParaEditar(c *gin.Context) {
 func AtualizarEquipe(c *gin.Context) {
 
 	var Equipe models.Equipe
-
 	nome := c.PostForm("nome")
 	cor := c.PostForm("cor")
 	id := c.PostForm("id")

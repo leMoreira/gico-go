@@ -8,13 +8,13 @@
     <div class="col-md-6 bg-light d-flex justify-content-center align-items-center py-5">
 
       <div class="d-flex align-items-center w-50">
-        <strong role="status" class="text-success">{{.message}}</strong>
-        <div class="spinner-border ms-auto text-info" style="width: 7rem; height: 7rem;" aria-hidden="true"></div>
+        <strong role="status" class="{{.status}}">{{.message}}</strong>
+        <div class="spinner-border ms-auto {{.status}}" style="width: 7rem; height: 7rem;" aria-hidden="true"></div>
       </div>
 
       <script>
         setTimeout(() => {
-          window.location.href = "/{{.link}}"
+          window.location.href = "{{.link}}"
         }, 3000);
       </script>
 
