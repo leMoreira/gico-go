@@ -1,6 +1,6 @@
 module github.com/leandro/gico-go
 
-go 1.22.0
+go 1.22.3
 
 require gorm.io/driver/postgres v1.5.7
 
