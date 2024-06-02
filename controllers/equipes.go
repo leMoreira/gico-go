@@ -17,7 +17,7 @@ func Index(c *gin.Context) {
 
 	fmt.Println(usuario)
 
-	c.HTML(http.StatusOK, "index.html", gin.H{
+	c.HTML(http.StatusOK, "dashboard.html", gin.H{
 		"usuario": usuario,
 	})
 
@@ -27,6 +27,7 @@ func ExibeEquipes(c *gin.Context) {
 
 	var equipes []models.Equipe
 	basedados.DB.Find(&equipes)
+	// Select * From equipes
 
 	c.HTML(http.StatusOK, "exibeequipes.html", gin.H{
 		"equipes": equipes,
@@ -45,7 +46,8 @@ func InserirDadosEquipes(c *gin.Context) {
 	basedados.DB.Create(&equipe)
 	c.HTML(http.StatusOK, "statusok.html", gin.H{
 		"message": "Equipe Cadastrada",
-		"link":    "equipes",
+		"link":    "/equipes",
+		"status":  "text-success",
 	})
 }
 
@@ -64,7 +66,8 @@ func DeletaEquipe(c *gin.Context) {
 
 	c.HTML(http.StatusOK, "statusok.html", gin.H{
 		"message": "Equipe Excluída",
-		"link":    "equipes",
+		"link":    "/equipes",
+		"status":  "text-success",
 	})
 
 }
@@ -111,7 +114,8 @@ func AtualizarEquipe(c *gin.Context) {
 
 	c.HTML(http.StatusOK, "statusok.html", gin.H{
 		"message": "Equipe Atualizada",
-		"link":    "equipes",
+		"link":    "/equipes",
+		"status":  "text-success",
 	})
 
 }

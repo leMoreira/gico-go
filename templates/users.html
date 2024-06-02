@@ -1,0 +1,97 @@
+{{define "users.html"}}
+
+{{template "_head.html"}}
+
+<style>
+  #splash {
+    display: block;
+  }
+
+  #imglogo {
+    width: 20px;
+    transition: ease-in 0.8s;
+  }
+
+  #pontuacoes {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+</style>
+
+<div class="container bg-light d-flex justify-content-center align-items-center" style="height:100vh;">
+  <div class="row " style="height: 100%; width: 100%;">
+    <div class="col-sm-12 col-md-12 d-flex justify-content-center align-items-center">
+      <div id="splash">
+        <img src="/assets/logo.png" alt="" id="imglogo">
+      </div>
+
+      <div id="pontuacoes" class="w-75">
+        <img src="/assets/logo.png" width="200" width="200" alt="logo Gico">
+
+        <table class="table ">
+          <thead>
+            <tr>
+
+              <th scope="col">Equipes</th>
+              <th scope="col">Total</th>
+
+            </tr>
+          </thead>
+          <tbody>
+            {{range .totalLista}}
+            <tr style="background-color:{{.EquipeCor}};">
+              <td style="font-size: 12px;background-color:{{.EquipeCor}};">{{.EquipeNome}} </td>
+              <td style="background-color:{{.EquipeCor}};">{{.TotalPontos}}</td>
+
+            </tr>
+            {{end}}
+          </tbody>
+        </table>
+
+      </div>
+
+
+    </div>
+  </div>
+</div>
+
+
+<script>
+  let splash = document.getElementById("splash");
+  let imglogo = document.getElementById("imglogo");
+  let pontuacoes = document.getElementById("pontuacoes");
+
+  setTimeout(() => {
+    imglogo.style.width = "350px";
+
+    setTimeout(() => {
+      imglogo.style.width = "320px";
+      setTimeout(() => {
+        imglogo.style.width = "355px";
+        setTimeout(() => {
+          imglogo.style.width = "0";
+
+          setTimeout(() => {
+            splash.style.display = "none";
+            pontuacoes.style.display = "flex";
+
+          }, 1000);
+        }, 1200);
+
+      }, 1000);
+    }, 1000);
+
+  }, 1500);
+
+
+
+
+
+
+</script>
+
+
+
+{{end}}

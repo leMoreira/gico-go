@@ -1,4 +1,4 @@
-{{define "exibeprovas.html"}}
+{{define "exibepontos.html"}}
 
 {{template "_head.html"}}
 {{template "_menu.html"}}
@@ -14,44 +14,42 @@
 </div>
 <div class="container mt-5">
   <h2 class="text-right border-bottom d-flex justify-content-between py-2">
-    Provas
+    Pontos
     <a href="/admin" class="btn btn-secondary btn-sm d-flex align-items-center"> Voltar</a>
   </h2>
 
   <div class="row d-flex justify-content-center">
+    <a href="/pontos/registerpontos" class="btn btn-info my-2 w-25">Cadastrar Pontos</a>
     <div class="col-md-12  d-flex justify-content-around">
-
-
-
-      <div class="container mt-3">
+      <div class="container-fluid mt-3">
         <div class="row">
+
           <div class="col-md-9">
             <h3 class="text-center">Lista</h3>
-
-
-
-
-            <table id="example" class="table table-hover" style="width:100%">
+            <table id="example" class="table table-striped" style="width:100%">
               <thead>
                 <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">Descrição</th>
-
+                  <th scope="col">Equipe</th>
+                  <th scope="col">Cor</th>
+                  <th scope="col">Prova</th>
+                  <th scope="col">Pontos</th>
                   <th scope="col">Ação</th>
                 </tr>
               </thead>
 
               <tbody>
-                {{range .provas}}
+                {{range .list}}
                 <tr>
-                  <td scope="row">{{.Id}}</td>
-                  <td style="width:30%">{{.Descricao}}</td>
 
-                  <td class="text-center">
-                    <a href="/provas/edit?id={{.Id}}" class="btn btn-warning btn-sm me-1">
+                  <td>{{.Nome}}</td>
+                  <td>{{.Cor}}</td>
+                  <td>{{.Descricao}}</td>
+                  <td>{{.Pontos}}</td>
+                  <td>
+                    <a href="/pontos/edit?idprova={{.IdProva}}&idequipe={{.IdEquipe}}" class="btn btn-warning btn-sm">
                       <i class="bi bi-pencil-square"></i>
                     </a>
-                    <button onclick="onDelete('{{.Id}}')" class="btn btn-danger btn-sm">
+                    <button onclick="onDelete('{{.IdEquipe}}', '{{.IdProva}}')" class="btn btn-danger btn-sm">
                       <i class="bi bi-trash"></i>
                     </button>
                   </td>
@@ -60,9 +58,11 @@
               </tbody>
               <tfoot>
                 <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">Descrição</th>
 
+                  <th scope="col">Equipe</th>
+                  <th scope="col">Cor</th>
+                  <th scope="col">Prova</th>
+                  <th scope="col">Pontos</th>
                   <th scope="col">Ação</th>
                 </tr>
               </tfoot>
@@ -77,36 +77,42 @@
           </script>
           <script>
 
-
-
-            function onDelete(id) {
-              resposta = confirm("Tem certeza que deseja deletar essa Prova?")
+            function onDelete(idequipe, idprova) {
+              resposta = confirm("Tem certeza que deseja deletar essa equipe?")
               if (resposta) {
-                window.location = "/provas/delete?id=" + id
+                window.location = "/pontos/delete?idequipe=" + idequipe + "&idprova=" + idprova
               }
             }
           </script>
 
+
           <div class="col-md-3">
-            <h3 class="text-center">Cadastrar</h3>
+            <h3 class="text-center">Pontuações</h3>
 
-            <form action="provas/insert" method="POST">
-              <div class="mb-3">
-                <label for="descricao" class="form-label">Descrição</label>
-                <input type="text" name="descricao" id="descricao" placeholder="" class="form-control">
-              </div>
+            <ol class="list-group list-group-numbered">
 
-              <div class="mb-3 d-flex justify-content-end">
-                <button type="submit" class="btn btn-primary btn-sm">Salvar</button>
-              </div>
-            </form>
+              {{range .listtotal}}
+              <li class="list-group-item d-flex justify-content-between align-items-start">
+                <div class="ms-2 me-auto">
+                  <div class="fw-bold">{{ .EquipeNome }}</div>
+
+                </div>
+                <span class="badge text-bg-primary rounded-pill">{{ .TotalPontos }}</span>
+              </li>
+              {{end}}
+
+            </ol>
+
+
+
 
           </div>
 
 
+
+
         </div>
       </div>
-
 
     </div>
   </div>

@@ -27,22 +27,14 @@ func InserirDadosProva(c *gin.Context) {
 	var prova models.Prova
 
 	descricao := c.PostForm("descricao")
-	pontosprimeiro := c.PostForm("pontosprimeiro")
-	pontossegundo := c.PostForm("pontossegundo")
-	pontosterceiro := c.PostForm("pontosterceiro")
-	pontosquarto := c.PostForm("pontosquarto")
 
 	prova.Descricao = descricao
-	prova.Pontosprimeiro, _ = strconv.Atoi(pontosprimeiro)
-	prova.Pontossegundo, _ = strconv.Atoi(pontossegundo)
-	prova.Pontosterceiro, _ = strconv.Atoi(pontosterceiro)
-	prova.Pontosquarto, _ = strconv.Atoi(pontosquarto)
 
 	basedados.DB.Create(&prova)
 
 	c.HTML(http.StatusOK, "statusok.html", gin.H{
 		"message": "Prova Cadastrada",
-		"link":    "provas",
+		"link":    "/provas",
 	})
 
 }
@@ -56,7 +48,7 @@ func DeletaProva(c *gin.Context) {
 
 	c.HTML(http.StatusOK, "statusok.html", gin.H{
 		"message": "Prova Excluída",
-		"link":    "provas",
+		"link":    "/provas",
 	})
 
 }
@@ -77,10 +69,7 @@ func BuscarProvaParaEditar(c *gin.Context) {
 func AtualizarProva(c *gin.Context) {
 	var Prova models.Prova
 	descricao := c.PostForm("descricao")
-	pontosprimeiro := c.PostForm("pontosprimeiro")
-	pontossegundo := c.PostForm("pontossegundo")
-	pontosterceiro := c.PostForm("pontosterceiro")
-	pontosquarto := c.PostForm("pontosquarto")
+
 	id := c.PostForm("id")
 
 	idConvert, err := strconv.Atoi(id)
@@ -89,40 +78,16 @@ func AtualizarProva(c *gin.Context) {
 		log.Panic(err.Error())
 	}
 
-	pontosPrimeiroConvert, err := strconv.Atoi(pontosprimeiro)
-	if err != nil {
-		fmt.Println("Não foi convertido")
-		log.Panic(err.Error())
-	}
-	pontosSegundoConvert, err := strconv.Atoi(pontossegundo)
-	if err != nil {
-		fmt.Println("Não foi convertido")
-		log.Panic(err.Error())
-	}
-	pontosTerceiroConvert, err := strconv.Atoi(pontosterceiro)
-	if err != nil {
-		fmt.Println("Não foi convertido")
-		log.Panic(err.Error())
-	}
-	pontosQuartoConvert, err := strconv.Atoi(pontosquarto)
-	if err != nil {
-		fmt.Println("Não foi convertido")
-		log.Panic(err.Error())
-	}
-
 	basedados.DB.Model(&Prova).Where("id = ?", idConvert).Updates(models.Prova{
-		Descricao:      descricao,
-		Pontosprimeiro: pontosPrimeiroConvert,
-		Pontossegundo:  pontosSegundoConvert,
-		Pontosterceiro: pontosTerceiroConvert,
-		Pontosquarto:   pontosQuartoConvert,
+		Descricao: descricao,
 	})
 
 	fmt.Println(&Prova)
 
 	c.HTML(http.StatusOK, "statusok.html", gin.H{
 		"message": "Prova Atualizada",
-		"link":    "provas",
+		"link":    "/provas",
+		"status":  "text-success",
 	})
 
 }

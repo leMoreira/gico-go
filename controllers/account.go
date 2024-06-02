@@ -44,7 +44,8 @@ func FazerRegistroDeUsuario(c *gin.Context) {
 	basedados.DB.Create(&usuario)
 	c.HTML(http.StatusOK, "statusok.html", gin.H{
 		"message": "Usuário cadastrado ... ",
-		"link":    "login",
+		"link":    "/login",
+		"status":  "text-success",
 	})
 }
 
@@ -58,7 +59,7 @@ func Logarusuario(c *gin.Context) {
 	if usuario.Id == 0 {
 		c.HTML(http.StatusBadRequest, "statusok.html", gin.H{
 			"message": "Usuário não encontrado ... ",
-			"link":    "login",
+			"link":    "/login",
 			"status":  "text-danger",
 		})
 
@@ -70,7 +71,7 @@ func Logarusuario(c *gin.Context) {
 	if err != nil {
 		c.HTML(http.StatusBadRequest, "statusok.html", gin.H{
 			"message": "Usuário não encontrado ... ",
-			"link":    "login",
+			"link":    "/login",
 			"status":  "text-danger",
 		})
 
@@ -100,7 +101,7 @@ func Logarusuario(c *gin.Context) {
 
 	c.HTML(http.StatusOK, "statusok.html", gin.H{
 		"message": "Entrando .. ",
-		"link":    "/",
+		"link":    "/admin",
 		"token":   tokenString,
 		"status":  "text-success",
 	})

@@ -1,0 +1,92 @@
+{{define "registerpontos.html"}}
+
+{{template "_head.html"}}
+{{template "_menu.html"}}
+<link rel="stylesheet" href="/assets/login.css">
+
+<div class="container mt-5">
+  <h2 class="text-right border-bottom d-flex justify-content-between py-2">
+    Registrar Pontos
+    <a href="/admin" class="btn btn-secondary btn-sm d-flex align-items-center"> Voltar</a>
+  </h2>
+  <div class="row mt-5 d-flex justify-content-center">
+
+    <div class="col-md-6 mt-5">
+
+      <form action="cadastrarpontos" method="post" onsubmit="myProcess()">
+        <div class="mb-3">
+          <label for="prova" class="form-label">
+            Prova
+          </label>
+          <select class="form-select form-select-lg mb-3" aria-label="Large select example" name="prova">
+            <option selected>Escolha a Prova</option>
+            {{range .provas}}
+            <option value="{{.Id}}">{{.Descricao}}</option>
+            {{end}}
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="equipe" class="form-label">
+            Equipe
+          </label>
+          <select class="form-select form-select-lg mb-3" aria-label="Large select example" name="equipe">
+            <option selected>Escolha a equipe</option>
+            {{range .equipes}}
+            <option value="{{.Id}}">{{.Nome}}</option>
+
+            {{end}}
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="pontos" class="form-label">
+            Pontos
+          </label>
+          <input type="number" name="pontos" id="pontos" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+          <button class="btn btn-info w-50" type="submit" id="process">
+            <span class="spinner-border spinner-border-sm" aria-hidden="true" id="loading_process"></span>
+            <span role="status" id="loading_text">Registrando...</span>
+            <span role="status" id="status">Registrar</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+
+    </div>
+  </div>
+</div>
+
+<script>
+
+  // Condição para select
+
+
+
+
+  let loading_process = document.getElementById("loading_process")
+  let loading_text = document.getElementById("loading_text")
+  let btn_process = document.getElementById("process")
+  let loading_status = document.getElementById("status")
+  loading_process.style.display = "none"
+  loading_text.style.display = "none"
+
+  function myProcess() {
+
+    loading_process.style.display = "block"
+    loading_text.style.display = "block"
+    loading_status.style.display = "none"
+
+  }
+
+</script>
+
+
+{{template "_footer.html"}}
+{{end}}
