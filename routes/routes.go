@@ -46,5 +46,5 @@ func HandleRequests() {
 
 	r.GET("/", controllers.ExibirPontosusuarios)
 
-	r.Run("0.0.0.0:80")
+	r.Run("35.208.235.239")
 }
