@@ -1,4 +1,4 @@
-{{define "login.html"}}
+{{define "esqueceuasenha.html"}}
 
 {{template "_head.html"}}
 {{template "_menu.html"}}
@@ -7,32 +7,24 @@
 <div class="container d-flex login">
   <img src="/assets/logo.png" alt="" width="20%">
   <div class="row">
-    <form action="logar" method="POST" onsubmit="myProcess()">
+    <form action="enviaremail" method="POST" onsubmit="myProcess()">
       <div class="mb-3">
         <label for="email" class="form-label">
           E-mail
         </label>
         <input type="email" name="email" id="email" class="form-control" />
       </div>
-      <div class="mb-3">
-        <label for="senha" class="form-label">
-          Senha
-        </label>
-        <input type="password" name="senha" id="senha" class="form-control" />
-      </div>
+
 
       <div class="mb-3">
         <button class="btn btn-info w-50" type="submit" id="process">
           <span class="spinner-border spinner-border-sm" aria-hidden="true" id="loading_process"></span>
-          <span role="status" id="loading_text">Entrando...</span>
-          <span role="status" id="status">Logar</span>
+          <span role="status" id="loading_text">Enviando...</span>
+          <span role="status" id="status">Enviar E-mail</span>
         </button>
       </div>
     </form>
-    <div class="linha d-flex justify-content-between w-100 bg-light py-1">
-      <p class=" w-75"><a href="/register">Quero fazer o cadastro</a></p>
-      <p class=" w-75"><a href="/esqueceusenha">Esqueci minha senha.</a></p>
-    </div>
+    <p class="text-right w-100"><a href="/login">Quero fazer o login</a></p>
   </div>
 </div>
 <div class="container">

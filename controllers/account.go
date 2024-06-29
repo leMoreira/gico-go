@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"fmt"
+	"log"
 	"net/http"
 	"time"
 
@@ -9,6 +10,7 @@ import (
 	"github.com/golang-jwt/jwt/v5"
 	"github.com/leandro/gico-go/basedados"
 	"github.com/leandro/gico-go/models"
+	"github.com/wneessen/go-mail"
 	"golang.org/x/crypto/bcrypt"
 )
 
@@ -125,5 +127,37 @@ func DeleteCookie(c *gin.Context) {
 		"link":    "/login",
 		"status":  "text-dark",
 	})
+
+}
+
+func EsqueceuASenha(c *gin.Context) {
+
+	c.HTML(http.StatusOK, "esqueceuasenha.html", nil)
+
+}
+
+func EnviarEmail(c *gin.Context) {
+	emaildousuario := c.PostForm("email")
+
+	m := mail.NewMsg()
+	if err := m.From("contato@leandromoreira.dev.br"); err != nil {
+		log.Fatalf("Failed to set From address: %s", err)
+	}
+
+	if err := m.To(emaildousuario); err != nil {
+		log.Fatalf("Failed to set to Address: %s", err)
+	}
+
+	m.Subject("This is my first email with go-mail!")
+	m.SetBodyString(mail.TypeTextPlain, "Do you like this mail? I certainly do!")
+
+	t, err := mail.NewClient("smtp.leandromoreira.dev.br", mail.WithPort(465), mail.WithSMTPAuth(mail.SMTPAuthPlain), mail.WithUsername("contato@leandromoreira.dev.br"), mail.WithPassword("Landaomo@123"))
+	if err != nil {
+		log.Fatalf("failed to create mail client: %s", err)
+	}
+
+	if err := t.DialAndSend(m); err != nil {
+		log.Fatalf("failed to send mail: %s", err)
+	}
 
 }

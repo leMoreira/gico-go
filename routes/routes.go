@@ -18,6 +18,8 @@ func HandleRequests() {
 	r.POST("/registrarusuario", controllers.FazerRegistroDeUsuario)
 	r.POST("/logar", controllers.Logarusuario)
 	r.GET("/deleteCookie", controllers.DeleteCookie)
+	r.GET("/esqueceusenha", controllers.EsqueceuASenha)
+	r.POST("/enviaremail", controllers.EnviarEmail)
 
 	//Equipes
 	r.GET("/admin", middleware.RequireAuth, controllers.Index)
@@ -45,6 +47,7 @@ func HandleRequests() {
 	//front
 
 	r.GET("/", controllers.ExibirPontosusuarios)
+	// r.GET("/detalhespontuacoesusuario", controllers.DetalhesPontuacaousuario)
 
 	r.Run()
 }
