@@ -1,0 +1,89 @@
+{{ define "detalhesprova.html"}}
+
+{{template "_head.html"}}
+<style>
+  h4 {
+    font-weight: 700;
+  }
+
+  h4 span {
+    margin-left: 20px;
+    color: brown;
+  }
+
+  a {
+    text-decoration: none;
+    color: darkblue
+  }
+</style>
+
+<div class="container bg-light d-flex justify-content-center ">
+  <div class="row w-100 d-flex justify-content-center ">
+    <div class="col-md-12   d-flex justify-content-center ">
+      <img src="/assets/logo.png" alt="" width="40%">
+    </div>
+  </div>
+
+
+</div>
+
+<div class="container mt-2">
+  <div class="row">
+    <div class="col-md-5">
+      <a href="/">
+        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+          class="bi bi-arrow-left-square-fill" viewBox="0 0 16 16">
+          <path
+            d="M16 14a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2zm-4.5-6.5H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H11.5a.5.5 0 0 0 0-1" />
+        </svg>
+
+        VOLTAR
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="container mt-2 d-flex flex-column justify-content-center bg-secondary align-items-center">
+
+  <div class="row bg-light w-100 py-3 mt-4">
+    <div class="col-md-8">
+      <h4>Equipe:<span>{{ .nomedaequipe }}</span></h1>
+    </div>
+  </div>
+
+  <div class="row mt-4 mb-4 w-100 bg-light py-5 d-flex justify-content-center">
+
+    <div class="col-md-11">
+
+      <ul class="list-group list-group-numbered">
+
+        {{ range .provasdescricao }}
+        <li class="list-group-item d-flex justify-content-between align-items-start">
+          <div class="ms-2 me-auto">
+            {{ .DescricaoProva }}
+          </div>
+          <span class="badge text-bg-success rounded-pill">
+            {{ .TotalPontos }}</span>
+        </li>
+
+        {{ end }}
+
+
+
+      </ul>
+
+
+
+
+    </div>
+
+
+  </div>
+
+</div>
+
+
+
+
+
+{{end}}

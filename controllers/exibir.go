@@ -25,20 +25,29 @@ func ExibirPontosusuarios(c *gin.Context) {
 	})
 }
 
-func DetalhesPontuacaousuario(w http.ResponseWriter, r *http.Request) {
-
-	type EquipePontos struct {
+func DetalhesPontuacaousuario(c *gin.Context) {
+	type PontosEADescricao struct {
 		EquipeNome     string `db:"equipe_nome"`
-		ProvaEquipe    string `db:"prova_equipe"`
-		PontosPorProva int    `db:"pontos_prova"`
+		DescricaoProva string `db:"descricao_prova"`
+		TotalPontos    int    `db:"total_pontos"`
 	}
 
-	totalPontosPorEquipe := []EquipePontos{}
+	pontosDescricao := []PontosEADescricao{}
 
-	basedados.DB.Table("equipes").
-		Select(" equipes.nome as equipe_nome, sum(pontos.pontos) as total_pontos").
-		Joins("inner join pontos on equipes.id = pontos.id_equipe").
-		Group("equipes.nome, equipes.cor").Order("total_pontos desc").
-		Scan(&totalPontosPorEquipe)
+	equipenome := c.Request.URL.Query().Get("nomeequipe")
+
+	basedados.DB.Table("pontos").
+		Select("pontos.pontos as total_pontos, equipes.nome as equipe_nome, provas.descricao as descricao_prova").
+		Joins("INNER JOIN provas ON pontos.id_prova= provas.id").
+		Joins("INNER JOIN equipes ON pontos.id_equipe = equipes.id").
+		Where("equipes.nome = ?", equipenome).
+		Find(&pontosDescricao)
+
+	// implementando
+
+	c.HTML(http.StatusOK, "detalhesprova.html", gin.H{
+		"provasdescricao": pontosDescricao,
+		"nomedaequipe":    equipenome,
+	})
 
 }

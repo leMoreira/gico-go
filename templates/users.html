@@ -20,9 +20,9 @@
   }
 </style>
 
-<div class="container bg-light d-flex justify-content-center align-items-center" style="height:100vh;">
-  <div class="row " style="height: 100%; width: 100%;">
-    <div class="col-sm-12 col-md-12 d-flex justify-content-center align-items-center">
+<div class="container-fluid bg-light d-flex justify-content-center align-items-center" style="height:100vh;">
+  <div class="row w-100 " style="height: 100%; width: 100%;">
+    <div class="col-sm-12 col-md-12 d-flex justify-content-center align-items-center w-100">
       <div id="splash">
         <img src="/assets/logo.png" alt="" id="imglogo">
       </div>
@@ -30,7 +30,7 @@
       <div id="pontuacoes" class="w-75">
         <img src="/assets/logo.png" width="200" width="200" alt="logo Gico">
 
-        <table class="table ">
+        <table class="table table-striped w-100">
           <thead>
             <tr>
 
@@ -42,11 +42,11 @@
           </thead>
           <tbody>
             {{range .totalLista}}
-            <tr style="background-color:{{.EquipeCor}};">
-              <td style="font-size: 12px;background-color:{{.EquipeCor}};">{{.EquipeNome}} </td>
-              <td style="background-color:{{.EquipeCor}};">{{.TotalPontos}}</td>
+            <tr>
+              <td>{{.EquipeNome}} </td>
+              <td>{{.TotalPontos}}</td>
               <td>
-                <a href="/detalhesprova?nomeequipe={{ .EquipeNome }}" class="btn btn-dark">
+                <a href="/detalhespontuacoesusuario?nomeequipe={{ .EquipeNome }}" class="btn btn-outline-dark">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                     class="bi bi-file-ruled" viewBox="0 0 16 16">
                     <path

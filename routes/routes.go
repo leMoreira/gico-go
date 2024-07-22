@@ -47,7 +47,7 @@ func HandleRequests() {
 	//front
 
 	r.GET("/", controllers.ExibirPontosusuarios)
-	// r.GET("/detalhespontuacoesusuario", controllers.DetalhesPontuacaousuario)
+	r.GET("/detalhespontuacoesusuario", controllers.DetalhesPontuacaousuario)
 
 	r.Run()
 }
